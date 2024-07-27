@@ -1,27 +1,21 @@
-<h1 align="center"> laravel captcha code </h1>
+<h1 align="center">aliyun opensearch sdk </h1>
 
 <p>
-    <a href="https://github.com/hughcube-php/laravel-captcha-code/actions?query=workflow%3ATest">
-        <img src="https://github.com/hughcube-php/laravel-captcha-code/workflows/Test/badge.svg" alt="Test Actions status">
+    <a href="https://github.com/hughcube-php/aliyun-opensearch-sdk/actions?query=workflow%3ATest">
+        <img src="https://github.com/hughcube-php/aliyun-opensearch-sdk/workflows/Test/badge.svg" alt="Test Actions status">
     </a>
-    <a href="https://github.com/hughcube-php/laravel-captcha-code/actions?query=workflow%3ALint">
-        <img src="https://github.com/hughcube-php/laravel-captcha-code/workflows/Lint/badge.svg" alt="Lint Actions status">
+    <a href="https://github.com/hughcube-php/aliyun-opensearch-sdk/actions?query=workflow%3ALint">
+        <img src="https://github.com/hughcube-php/aliyun-opensearch-sdk/workflows/Lint/badge.svg" alt="Lint Actions status">
     </a>
-    <a href="https://styleci.io/repos/217659566">
-        <img src="https://github.styleci.io/repos/217659566/shield?branch=master" alt="StyleCI">
+    <a href="https://styleci.io/repos/816176661">
+        <img src="https://github.styleci.io/repos/816176661/shield?branch=master" alt="StyleCI">
     </a>
 </p>
 
 ## Installing
 
 ```shell
-$ composer require hughcube/laravel-captcha-code -vvv
-```
-
-## Configuration
-
-```shell
-$ php artisan vendor:publish --provider="HughCube\Laravel\CaptchaCode\ServiceProvider"
+$ composer require hughcube/aliyun-opensearch-sdk -vvv
 ```
 
 ## Usage

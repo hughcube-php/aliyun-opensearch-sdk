@@ -9,7 +9,7 @@
 namespace HughCube\AliYun\OpenSearch\SDK\Util;
 
 use Closure;
-use HughCube\AliYun\OpenSearch\Client;
+use HughCube\AliYun\OpenSearch\SDK\Client;
 use Psr\Http\Message\RequestInterface;
 
 class OpenApiUtil
@@ -32,7 +32,7 @@ class OpenApiUtil
         return function (RequestInterface $request, array $options) use ($client, $handler) {
 
             if (!$request->hasHeader('Date')) {
-                $request = $request->withHeader('Date', gmdate('D, d M Y H:i:s T'));
+                $request = $request->withHeader('Date', gmdate('Y-m-d\TH:i:s\Z'));
             }
 
             if (!$request->hasHeader('Content-Type')) {
@@ -67,6 +67,8 @@ class OpenApiUtil
                     $string .= sprintf('%s:%s', strtolower($name), $request->getHeaderLine($name)) . "\n";
                 }
             }
+            $query = $request->getUri()->getQuery();
+            $string .= $request->getUri()->getPath() . ($query ? sprintf('?%s', $query) : '');
             $signature = base64_encode(hash_hmac('sha1', $string, $client->getAccessSecret(), true));
 
             /** 设置鉴权参数 */

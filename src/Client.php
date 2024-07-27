@@ -48,12 +48,12 @@ class Client
 
     public function getVersion()
     {
-        return $this->config['Version'];
+        return $this->config['Version'] ?? null;
     }
 
     public function getOptions()
     {
-        return $this->config['Options'];
+        return $this->config['Options'] ?? [];
     }
 
     public function createHttpClient(): HttpClient
