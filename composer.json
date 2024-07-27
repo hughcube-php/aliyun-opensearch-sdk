@@ -1,31 +1,43 @@
 {
-  "name": "hughcube/opensearch",
+    "name": "hughcube/aliyun-opensearch-sdk",
+    "description": "",
   "license": "MIT",
   "links": [
     "https://help.aliyun.com/zh/open-search/industry-algorithm-edition/downloads-2"
   ],
-  "require": {
-    "php": ">=5.3",
-    "aliyun/opensearch": "*"
-  },
-  "repositories": [
-    {
-      "type": "package",
-      "package": {
-        "name": "aliyun/opensearch",
-        "version": "v3.4.1",
-        "dist": {
-          "url": "https://cdn.x4k.net/aliyun/p/opensearch-sdk-php-release-v3.4.1.zip",
-          "type": "zip"
-        },
-        "autoload": {
-          "files": [
-            "./OpenSearch/Autoloader/Autoloader.php"
-          ]
+    "authors": [
+        {
+            "name": "hugh.li",
+            "email": "hugh.li@foxmail.com"
         }
-      }
-    }
-  ],
-  "minimum-stability": "stable",
+    ],
+  "require": {
+      "php": ">=7.0",
+      "hughcube/purl": "*",
+      "hughcube/guzzle-http": "*"
+  },
+    "require-dev": {
+        "phpstan/phpstan": "*",
+        "mockery/mockery": "^1.6",
+        "phpunit/phpunit": "*",
+        "squizlabs/php_codesniffer": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "HughCube\\AliYun\\OpenSearch\\SDK\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "HughCube\\AliYun\\OpenSearch\\SDK\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit --verbose --coverage-clover=coverage.clover",
+        "phpstan": "phpstan analyse -vvv",
+        "check-style": "phpcs -p --standard=PSR2 src/ -v",
+        "fix-style": "phpcbf -p --standard=PSR2 src/ -v"
+    },
+    "minimum-stability": "dev",
   "prefer-stable": true
 }
