@@ -16,7 +16,7 @@ class OpenApiUtil
 {
     public static function genNonce(): string
     {
-        return strval(intval(microtime(true) * 1000) . mt_rand(10000, 99999));
+        return strval(intval(microtime(true) * 1000).mt_rand(10000, 99999));
     }
 
     public static function makeContentMd5($request): string
@@ -24,13 +24,13 @@ class OpenApiUtil
         if ('GET' !== strtoupper($request->getMethod())) {
             return md5($request->getBody()->getContents());
         }
+
         return '';
     }
 
     public static function completeRequestMiddleware(Client $client, callable $handler): Closure
     {
         return function (RequestInterface $request, array $options) use ($client, $handler) {
-
             if (!$request->hasHeader('Date')) {
                 $request = $request->withHeader('Date', gmdate('Y-m-d\TH:i:s\Z'));
             }
@@ -52,23 +52,22 @@ class OpenApiUtil
     public static function signatureRequestMiddleware(Client $client, callable $handler): Closure
     {
         return function (RequestInterface $request, array $options) use ($client, $handler) {
-
             /** 补充签名需要的参数 */
             $request = $request->withHeader('X-Opensearch-Nonce', static::genNonce());
             $request = $request->withHeader('Content-Md5', static::makeContentMd5($request));
 
             /** 签名 */
-            $string = strtoupper($request->getMethod()) . "\n";
-            $string .= $request->getHeaderLine('Content-Md5') . "\n";
-            $string .= $request->getHeaderLine('Content-Type') . "\n";
-            $string .= $request->getHeaderLine('Date') . "\n";
+            $string = strtoupper($request->getMethod())."\n";
+            $string .= $request->getHeaderLine('Content-Md5')."\n";
+            $string .= $request->getHeaderLine('Content-Type')."\n";
+            $string .= $request->getHeaderLine('Date')."\n";
             foreach ($request->getHeaders() as $name => $_) {
                 if (0 === stripos($name, 'x-opensearch-')) {
-                    $string .= sprintf('%s:%s', strtolower($name), $request->getHeaderLine($name)) . "\n";
+                    $string .= sprintf('%s:%s', strtolower($name), $request->getHeaderLine($name))."\n";
                 }
             }
             $query = $request->getUri()->getQuery();
-            $string .= $request->getUri()->getPath() . ($query ? sprintf('?%s', $query) : '');
+            $string .= $request->getUri()->getPath().($query ? sprintf('?%s', $query) : '');
             $signature = base64_encode(hash_hmac('sha1', $string, $client->getAccessSecret(), true));
 
             /** 设置鉴权参数 */
