@@ -13,6 +13,7 @@ use HughCube\AliYun\OpenSearch\SDK\Util\OpenApiUtil;
 use HughCube\GuzzleHttp\Client as HttpClient;
 use HughCube\GuzzleHttp\HttpClientTrait;
 use HughCube\GuzzleHttp\LazyResponse;
+use Psr\Http\Message\ResponseInterface;
 
 class Client
 {
