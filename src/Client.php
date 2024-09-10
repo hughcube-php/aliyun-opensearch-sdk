@@ -75,7 +75,12 @@ class Client
         return new HttpClient(array_merge(['base_uri' => $this->getEndpoint()], $options));
     }
 
-    public function request(string $method, $uri, array $options = []): LazyResponse
+    public function request(string $method, $uri, array $options = []): ResponseInterface
+    {
+        return $this->getHttpClient()->request($method, $uri, $options);
+    }
+
+    public function lazyRequest(string $method, $uri, array $options = []): ResponseInterface
     {
         return $this->getHttpClient()->requestLazy($method, $uri, $options);
     }
